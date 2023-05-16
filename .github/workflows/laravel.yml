@@ -16,7 +16,7 @@ jobs:
         env:
           MYSQL_USER: user
           MYSQL_PASSWORD: secret
-          MYSQL_DATABASE: chat-sql
+          MYSQL_DATABASE: chatbox_db
           MYSQL_ROOT_PASSWORD: root
           DB_PORT: ${{ job.services.mysql.ports[3306] }}
         ports:
@@ -45,7 +45,7 @@ jobs:
     - name: Execute PHPUnit tests
       env:
         DB_CONNECTION: mysql
-        DB_DATABASE: chat-sql
+        DB_DATABASE: chatbox_db
         DB_PORT: 33306
         DB_USER: root
         DB_PASSWORD: secret
