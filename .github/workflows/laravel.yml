@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
     
-runs:
-  using: 'node16'
-  main: 'main.js'
-  
 jobs:
   laravel-tests:
     runs-on: ubuntu-latest
