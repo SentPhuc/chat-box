@@ -40,7 +40,7 @@ class UploadController extends Controller
         }
 
         return redirect('/')->with([
-            'error' => 'Upload file faile',
+            'error' => 'Upload file failed',
             'status' => 'alert-danger',
         ]);
     }
