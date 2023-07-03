@@ -31,6 +31,7 @@ class customOracle extends Oracle
     public function buildPromptNew(string $question, string $query = null, string $result = null): string
     {
         $tables = $this->getObjectTable();
+        if($tables->isEmpty()) return rtrim($question, PHP_EOL);
         $prompt = (string) view('prompts.query', [
             'question' => $question,
             'tables' => $tables,
