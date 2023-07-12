@@ -18,13 +18,14 @@ if (! function_exists('handleDeleteCookie')) {
 }
 
 if (! function_exists('convertData')) {
-    function convertData(array $data): array
+    function convertData(array $data)
     {
         $defile = [];
         foreach ($data as $key => $value) {
+            if(count($value) > 3)
             $defile[$value[1]][] = ['column' => $value[2], 'type' => $value[3]];
         }
+        return empty($defile) ?  'error' : $defile;
 
-        return $defile;
     }
 }

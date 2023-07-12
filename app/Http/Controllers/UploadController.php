@@ -52,7 +52,14 @@ class UploadController extends Controller
     protected function createTableMysqlImport(array $data, string $ip = '')
     {
         if ($data) {
-            $this->insertDataForTable($data, $ip);
+            $res = $this->insertDataForTable($data, $ip);
+
+            if($res=='error structured'){
+                return redirect('/')->with([
+                    'error' => 'File is not properly structured !!!',
+                    'status' => 'alert-danger',
+                ]);
+            }
 
             return redirect('/')->with([
                 'error' => 'Upload file Success',
@@ -71,10 +78,15 @@ class UploadController extends Controller
         if (! $data) {
             return;
         }
+
+        $schema = $data[0][0];
+        $dataConvert = convertData($data);
+        if($dataConvert=='error'){
+            return 'error structured';
+        }
+
         DB::beginTransaction();
         try {
-            $schema = $data[0][0];
-            $dataConvert = convertData($data);
             AskDatabases::updateOrCreate(
                 ['visitor' => $ip],
                 [

@@ -225,6 +225,14 @@ function handleRemoveCookie(name) {
     return;
 }
 
+function handleShowButtonUploadFile(element){
+    const btnFile = document.getElementsByClassName('btn-form-fileExcel');
+    if(element.value && btnFile){
+        btnFile[0].classList.remove('d-none');
+        btnFile[0].classList.add('d-flex');
+    }
+}
+
 //Init data
 function initData() {
     const json = decodeURIComponent(getCookie("chatSQL"));
@@ -259,3 +267,4 @@ function queryAPI(value) {
 //Define event window
 window.checkValueMessages = checkValueMessages;
 window.handleRemoveCookie = handleRemoveCookie;
+window.handleShowButtonUploadFile = handleShowButtonUploadFile;

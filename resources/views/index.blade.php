@@ -59,14 +59,13 @@
                     @csrf
                     <div class="mb-3">
                         <label for="fileExcel" class="form-label"><b>Choose file</b></label>
-                        <input class="form-control" type="file" id="fileExcel" name="filePost"
+                        <input onchange="handleShowButtonUploadFile(this)" class="form-control" type="file" id="fileExcel" name="filePost"
                             accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                     </div>
-                    <div class="d-flex">
+                    <div class="btn-form-fileExcel d-none">
                         <button type="reset" class="btn btn-outline-danger btn-sm me-1">Reset</button>
                         <button id="choose-file" type="submit" class="btn btn-outline-primary btn-sm">Submit</button>
                     </div>
-                    {{-- {{ json_encode($data[0]['data']) }} --}}
                     @if (session('error'))
                         <div class="alert {{ session('status') ?? '' }} d-flex align-items-center pt-2 pb-2 mt-3"
                             role="alert">
@@ -78,18 +77,18 @@
                 </form>
                 @if (Arr::first($data))
                     <div id="box_load_data_table">
-                        <div class="d-flex mt-3">
+                        <div class="d-flex mt-4">
                             <button type="button" id="deleteAll" class="btn btn-outline-danger btn-sm me-1">Delete
                                 All</button>
                             <button type="button" id="deleteSelected" class="btn btn-outline-danger btn-sm">Delete
                                 selected</button>
                         </div>
-                        <div id="load_data" class="table-responsive mt-2 tableFixHead bg-white">
+                        <div id="load_data" class="table-responsive mt-4 tableFixHead bg-white">
                             @include('table', ['data' => Arr::first($data)])
                         </div>
                     </div>
                 @endif
-                <div id="boxChat" class="mt-5 rounded bg-light position-relative">
+                <div id="boxChat" class="mt-4 rounded bg-light position-relative">
                     <div id="chatbox__messages" class="chatbox__messages pe-1"></div>
                     <div class="chatbox__inputPanel">
                         <div class="input-group align-items-center justify-content-between">
